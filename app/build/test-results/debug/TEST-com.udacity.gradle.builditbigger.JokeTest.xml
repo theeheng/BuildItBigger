@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.udacity.gradle.builditbigger.JokeTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2015-09-08T17:54:21" hostname="VOSTRO_460M_002" time="0.02">
+<testsuite name="com.udacity.gradle.builditbigger.JokeTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2015-09-08T22:26:59" hostname="Hengs-MacBook-Air.local" time="0.031">
   <properties/>
-  <testcase name="testJokeEndpointResponse" classname="com.udacity.gradle.builditbigger.JokeTest" time="0.02">
+  <testcase name="testJokeEndpointResponse" classname="com.udacity.gradle.builditbigger.JokeTest" time="0.031">
     <failure message="java.lang.RuntimeException: Method getSocketFactory in org.apache.http.conn.ssl.SSLSocketFactory not mocked. See https://sites.google.com/a/android.com/tools/tech-docs/unit-testing-support for details." type="java.lang.RuntimeException">java.lang.RuntimeException: Method getSocketFactory in org.apache.http.conn.ssl.SSLSocketFactory not mocked. See https://sites.google.com/a/android.com/tools/tech-docs/unit-testing-support for details.
 	at org.apache.http.conn.ssl.SSLSocketFactory.getSocketFactory(SSLSocketFactory.java)
 	at com.google.api.client.http.apache.ApacheHttpTransport.newDefaultHttpClient(ApacheHttpTransport.java:157)
