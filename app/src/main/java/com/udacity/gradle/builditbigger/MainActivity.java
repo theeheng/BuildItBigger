@@ -38,7 +38,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void tellJoke(View view){
-        new JokeEndpointsAsyncTask().execute(this);
+        new JokeEndpointsAsyncTask(this, new JokeUtility()).execute();
     }
 
 

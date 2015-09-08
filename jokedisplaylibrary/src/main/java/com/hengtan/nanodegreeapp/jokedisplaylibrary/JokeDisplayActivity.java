@@ -11,6 +11,7 @@ public class JokeDisplayActivity extends AppCompatActivity {
     public static final String JOKEEXTRA = "JOKEEXTRA";
 
     private TextView jokeTxtView;
+    private String jokeString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +24,17 @@ public class JokeDisplayActivity extends AppCompatActivity {
         {
             if(getIntent().getExtras() != null) {
 
-                String jokeString = getIntent().getExtras().getString(JOKEEXTRA);
-
-                if (jokeString != null) {
-
-                    jokeTxtView.setText(jokeString);
-
-                }
+                jokeString = getIntent().getExtras().getString(JOKEEXTRA);
             }
         }
+        else
+        {
+            jokeString = savedInstanceState.getString(JOKEEXTRA);
+        }
 
+        if (jokeString != null) {
+            jokeTxtView.setText(jokeString);
+        }
     }
 
     @Override
@@ -56,4 +58,11 @@ public class JokeDisplayActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+    }
+
 }
