@@ -62,6 +62,10 @@ public class JokeDisplayActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
 
+        if(jokeString != null)
+        {
+            outState.putString(JOKEEXTRA, jokeString);
+        }
         super.onSaveInstanceState(outState);
     }
 
