@@ -30,11 +30,12 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.jakewharton:butterknife:6.0.0'
+
+    compile project(path: ':jokebackend', configuration: 'android-endpoints')
 
     paidCompile project(path: ':jokedisplaylibrary', configuration: 'paidDebug')
     freeCompile project(path: ':jokedisplaylibrary', configuration: 'freeDebug')
-
-    compile project(path: ':jokebackend', configuration: 'android-endpoints')
 
     // Added for AdMob
     freeCompile 'com.android.support:appcompat-v7:22.2.0'

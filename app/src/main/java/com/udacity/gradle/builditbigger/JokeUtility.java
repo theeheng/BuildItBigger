@@ -2,6 +2,8 @@ package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -19,7 +21,7 @@ public class JokeUtility implements IJokeUtility {
 
     private static JokeApi myApiService = null;
 
-    public void displayJoke(Context context, String joke)
+    public void DisplayJoke(Context context, String joke)
     {
         Intent intent = new Intent(context, JokeDisplayActivity.class);
         intent.putExtra(JokeDisplayActivity.JOKEEXTRA, joke);
@@ -51,5 +53,12 @@ public class JokeUtility implements IJokeUtility {
         } catch (IOException e) {
             return null;
         }
+    }
+
+    public void TellJokeButtonClick(Context context, View view, FrameLayout progressBarHolder){
+
+        view.setEnabled(false);
+
+        new JokeEndpointsAsyncTask(context, this , view, progressBarHolder).execute();
     }
 }

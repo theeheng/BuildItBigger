@@ -1,9 +1,11 @@
 package com.udacity.gradle.builditbigger;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 /**
@@ -11,38 +13,57 @@ import android.widget.Toast;
  */
 public class JokeEndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
-    private Context context;
-    private IJokeUtility jokeUtility;
-    private View button;
+    private Context mContext;
+    private IJokeUtility mJokeUtility;
+    private View mTellJokeButton;
+    private FrameLayout mProgressBarHolder;
 
-    JokeEndpointsAsyncTask(Context ctxt, IJokeUtility ju, View btn)
+    JokeEndpointsAsyncTask(Context ctxt, IJokeUtility ju, View btn, FrameLayout progressBarHolder)
     {
-        this.context = ctxt;
-        this.jokeUtility = ju;
-        this.button = btn;
+        this.mContext = ctxt;
+        this.mJokeUtility = ju;
+        this.mTellJokeButton = btn;
+        this.mProgressBarHolder = progressBarHolder;
     }
     @Override
     protected String doInBackground(Void... params) {
-        return jokeUtility.getJoke("jokeendpoint.appspot.com");
+
+        ((Activity)mContext).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ProgressBarHelper.ShowProgressBar(mProgressBarHolder);
+            }
+        });
+
+        Resources res = mContext.getResources();
+
+        return mJokeUtility.getJoke(res.getString(R.string.joke_end_point_server));
     }
 
     @Override
     protected void onPostExecute(String result) {
 
+        ((Activity)mContext).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ProgressBarHelper.HideProgressBar(mProgressBarHolder);
+            }
+        });
+
         if(result != null) {
-            jokeUtility.displayJoke(context, result);
+            mJokeUtility.DisplayJoke(mContext, result);
         }
         else
         {
-            Resources res = context.getResources();
+            Resources res = mContext.getResources();
 
-            Toast toastMessage = Toast.makeText(context,
+            Toast toastMessage = Toast.makeText(mContext,
                     res.getString(R.string.server_unavailable),
                     Toast.LENGTH_LONG);
 
             toastMessage.show();
         }
 
-        this.button.setEnabled(true);
+        this.mTellJokeButton.setEnabled(true);
     }
 }
