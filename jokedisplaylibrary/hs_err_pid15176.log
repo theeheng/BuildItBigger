@@ -1,0 +1,77 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 131088 bytes for Chunk::new
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (allocation.cpp:323), pid=15176, tid=5276
+#
+# JRE version: Java(TM) SE Runtime Environment (7.0_71-b14) (build 1.7.0_71-b14)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.71-b01 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000079be800):  JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=5276, stack(0x000000000a310000,0x000000000a410000)]
+
+Stack: [0x000000000a310000,0x000000000a410000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+
+[error occurred during error reporting (printing native stack), id 0xc0000005]
+
+
+Current CompileTask:
+C2:   1640  207             com.android.dx.ssa.SCCP::simulateBranch (666 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x0000000008b70000 JavaThread "Service Thread" daemon [_thread_blocked, id=15240, stack(0x000000000a040000,0x000000000a140000)]
+  0x0000000008b6a800 JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=8896, stack(0x000000000a430000,0x000000000a530000)]
+=>0x00000000079be800 JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=5276, stack(0x000000000a310000,0x000000000a410000)]
+  0x00000000079bd800 JavaThread "Attach Listener" daemon [_thread_blocked, id=17616, stack(0x000000000a1d0000,0x000000000a2d0000)]
+  0x00000000079bd000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=19136, stack(0x0000000009db0000,0x0000000009eb0000)]
+  0x000000000229d000 JavaThread "Finalizer" daemon [_thread_blocked, id=13308, stack(0x0000000009f20000,0x000000000a020000)]
+  0x000000000229c000 JavaThread "Reference Handler" daemon [_thread_blocked, id=11120, stack(0x0000000009c50000,0x0000000009d50000)]
+  0x0000000002209000 JavaThread "main" [_thread_in_Java, id=7372, stack(0x0000000002650000,0x0000000002750000)]
+
+Other Threads:
+  0x000000000799d800 VMThread [stack: 0x0000000009a80000,0x0000000009b80000] [id=9380]
+  0x0000000008b79800 WatcherThread [stack: 0x000000000a570000,0x000000000a670000] [id=16652]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 37888K, used 31116K [0x00000000f5500000, 0x00000000f7f00000, 0x0000000100000000)
+  eden space 32768K, 94% used [0x00000000f5500000,0x00000000f7363300,0x00000000f7500000)
+  from space 5120K, 0% used [0x00000000f7a00000,0x00000000f7a00000,0x00000000f7f00000)
+  to   space 5120K, 0% used [0x00000000f7500000,0x00000000f7500000,0x00000000f7a00000)
+ ParOldGen       total 85504K, used 0K [0x00000000e0000000, 0x00000000e5380000, 0x00000000f5500000)
+  object space 85504K, 0% used [0x00000000e0000000,0x00000000e0000000,0x00000000e5380000)
+ PSPermGen       total 21504K, used 5532K [0x00000000dae00000, 0x00000000dc300000, 0x00000000e0000000)
+  object space 21504K, 25% used [0x00000000dae00000,0x00000000db3673c0,0x00000000dc300000)
+
+Card table byte_map: [0x0000000005750000,0x0000000005880000] byte_map_base: 0x0000000005079000
+
+Polling page: 0x0000000000130000
+
+Code Cache  [0x0000000002750000, 0x00000000029c0000, 0x0000000005750000)
+ total_blobs=440 nmethods=206 adapters=186 free_code_cache=48341Kb largest_free_block=49470208
+
+Compilation events (10 events):
