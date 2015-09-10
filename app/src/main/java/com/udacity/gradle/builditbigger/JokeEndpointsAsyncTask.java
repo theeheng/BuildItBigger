@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+
 /**
  * Created by htan on 08/09/2015.
  */
@@ -37,7 +40,7 @@ public class JokeEndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
         Resources res = mContext.getResources();
 
-        return mJokeUtility.getJoke(res.getString(R.string.joke_end_point_server));
+        return mJokeUtility.getJoke(res.getString(R.string.joke_end_point_server), AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory());
     }
 
     @Override

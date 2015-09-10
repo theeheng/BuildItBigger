@@ -17,3 +17,22 @@ allprojects {
         jcenter()
     }
 }
+
+
+
+task testWithJokeBackendServer(group: "verification") {
+
+    dependsOn =[":jokebackend:appengineRun", ":app:test"]
+
+    project(":jokebackend").afterEvaluate { backend ->
+        backend.extensions.appengine.daemon = true
+        println("jokebackend server started.")
+    }
+
+    doLast {
+        println("test run completed")
+    }
+
+}
+
+testWithJokeBackendServer.finalizedBy ":jokebackend:appengineStop"

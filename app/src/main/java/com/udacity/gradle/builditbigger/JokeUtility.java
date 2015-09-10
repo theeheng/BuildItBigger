@@ -9,6 +9,8 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.json.JsonFactory;
 import com.hengtan.nanodegreeapp.jokebackend.jokeApi.JokeApi;
 import com.hengtan.nanodegreeapp.jokedisplaylibrary.JokeDisplayActivity;
 
@@ -28,11 +30,10 @@ public class JokeUtility implements IJokeUtility {
         context.startActivity(intent);
     }
 
-    public String getJoke(String endPointServer)
+    public String getJoke(String endPointServer, HttpTransport httpTransport, JsonFactory jsonFactory)
     {
         if(myApiService == null) {  // Only do this once
-            JokeApi.Builder builder = new JokeApi.Builder(AndroidHttp.newCompatibleTransport(),
-                    new AndroidJsonFactory(), null)
+            JokeApi.Builder builder = new JokeApi.Builder(httpTransport, jsonFactory, null)
                     // options for running against local devappserver
                     // - 10.0.2.2 is localhost's IP address in Android emulator
                     // - turn off compression when running against local devappserver
