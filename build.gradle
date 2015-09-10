@@ -22,15 +22,14 @@ allprojects {
 
 task testWithJokeBackendServer(group: "verification") {
 
-    dependsOn =[":jokebackend:appengineRun", ":app:test"]
+    dependsOn =[":jokebackend:appengineRun", ":app:connectedAndroidTest"]
 
-    project(":jokebackend").afterEvaluate { backend ->
-        backend.extensions.appengine.daemon = true
-        println("jokebackend server started.")
-    }
+    //project(":jokebackend").afterEvaluate { backend ->
+    //    backend.extensions.appengine.daemon = true
+    //}
 
     doLast {
-        println("test run completed")
+
     }
 
 }

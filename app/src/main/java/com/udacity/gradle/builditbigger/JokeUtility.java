@@ -32,12 +32,23 @@ public class JokeUtility implements IJokeUtility {
 
     public String getJoke(String endPointServer, HttpTransport httpTransport, JsonFactory jsonFactory)
     {
+        String rootUrl;
+
+        if(endPointServer.equals("10.0.2.2:8080"))
+        {
+            rootUrl = "http://"+endPointServer+"/_ah/api/";
+        }
+        else
+        {
+            rootUrl = "https://"+endPointServer+"/_ah/api/";
+        }
+
         if(myApiService == null) {  // Only do this once
             JokeApi.Builder builder = new JokeApi.Builder(httpTransport, jsonFactory, null)
                     // options for running against local devappserver
                     // - 10.0.2.2 is localhost's IP address in Android emulator
                     // - turn off compression when running against local devappserver
-                    .setRootUrl("https://"+endPointServer+"/_ah/api/")
+                    .setRootUrl(rootUrl)
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {

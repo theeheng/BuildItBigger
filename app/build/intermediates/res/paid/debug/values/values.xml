@@ -202,7 +202,7 @@
     <string name="app_name">Tell Joke</string>
     <string name="button_text">Tell Joke</string>
     <string name="instructions">Press the button for a delicious joke!</string>
-    <string name="joke_end_point_server">jokeendpoint.appspot.com</string>
+    <string name="joke_end_point_server">10.0.2.2:8080</string>
     <!-- From: file:/I:/GitHub/BuildItBigger/app/src/paid/res/values/strings.xml -->
     <eat-comment/>
     <string name="paid_message">Thanks for purchasing the paid version! Please enjoy the lack of ads.</string>

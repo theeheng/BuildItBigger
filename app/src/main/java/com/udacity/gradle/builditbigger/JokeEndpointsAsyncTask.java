@@ -20,53 +20,70 @@ public class JokeEndpointsAsyncTask extends AsyncTask<Void, Void, String> {
     private IJokeUtility mJokeUtility;
     private View mTellJokeButton;
     private FrameLayout mProgressBarHolder;
+    private String mEndPointServer;
+    private Resources mResources;
 
-    JokeEndpointsAsyncTask(Context ctxt, IJokeUtility ju, View btn, FrameLayout progressBarHolder)
+    public JokeEndpointsAsyncTask(Context ctxt, IJokeUtility ju, View btn, FrameLayout progressBarHolder)
     {
         this.mContext = ctxt;
         this.mJokeUtility = ju;
         this.mTellJokeButton = btn;
         this.mProgressBarHolder = progressBarHolder;
+        this.mResources = mContext.getResources();
+        this.mEndPointServer = mResources.getString(R.string.joke_end_point_server);
     }
+
+    public JokeEndpointsAsyncTask(Context ctxt, IJokeUtility ju, View btn, FrameLayout progressBarHolder, String endPointServer)
+    {
+        this.mContext = ctxt;
+        this.mJokeUtility = ju;
+        this.mTellJokeButton = btn;
+        this.mProgressBarHolder = progressBarHolder;
+        this.mEndPointServer = endPointServer;
+    }
+
     @Override
     protected String doInBackground(Void... params) {
 
-        ((Activity)mContext).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ProgressBarHelper.ShowProgressBar(mProgressBarHolder);
-            }
-        });
+        if(mProgressBarHolder != null) {
+            ((Activity) mContext).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ProgressBarHelper.ShowProgressBar(mProgressBarHolder);
+                }
+            });
+        }
 
-        Resources res = mContext.getResources();
 
-        return mJokeUtility.getJoke(res.getString(R.string.joke_end_point_server), AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory());
+        return mJokeUtility.getJoke(mEndPointServer, AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory());
     }
 
     @Override
     protected void onPostExecute(String result) {
 
-        ((Activity)mContext).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ProgressBarHelper.HideProgressBar(mProgressBarHolder);
-            }
-        });
+        if(mProgressBarHolder != null) {
+            ((Activity) mContext).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ProgressBarHelper.HideProgressBar(mProgressBarHolder);
+                }
+            });
+        }
 
         if(result != null) {
             mJokeUtility.DisplayJoke(mContext, result);
         }
         else
         {
-            Resources res = mContext.getResources();
-
             Toast toastMessage = Toast.makeText(mContext,
-                    res.getString(R.string.server_unavailable),
+                    mResources.getString(R.string.server_unavailable),
                     Toast.LENGTH_LONG);
 
             toastMessage.show();
         }
 
-        this.mTellJokeButton.setEnabled(true);
+        if(mTellJokeButton != null) {
+            this.mTellJokeButton.setEnabled(true);
+        }
     }
 }
