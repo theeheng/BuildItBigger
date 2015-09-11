@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<testsuite name="com.udacity.gradle.builditbigger.JokeTest" tests="1" failures="0" errors="0" skipped="0" time="0.035" timestamp="2015-09-10T16:28:31" hostname="localhost">
-  <properties>
-    <property name="device" value="Nexus_4_API_19(AVD) - 4.4.2" />
-    <property name="flavor" value="Paid" />
-    <property name="project" value="app" />
-  </properties>
-  <testcase name="testJokeUtilityGetJoke" classname="com.udacity.gradle.builditbigger.JokeTest" time="0.0" />
-</testsuite>

@@ -1,8 +1,6 @@
 -- Merging decision tree log ---
 manifest
 ADDED from AndroidManifest.xml:2:1
-	xmlns:android
-		ADDED from AndroidManifest.xml:2:11
 	package
 		ADDED from AndroidManifest.xml:3:5
 		INJECTED from AndroidManifest.xml:0:0
@@ -11,6 +9,8 @@ ADDED from AndroidManifest.xml:2:1
 		INJECTED from AndroidManifest.xml:0:0
 		ADDED from AndroidManifest.xml:2:1
 		INJECTED from AndroidManifest.xml:0:0
+	xmlns:android
+		ADDED from AndroidManifest.xml:2:11
 	android:versionCode
 		INJECTED from AndroidManifest.xml:0:0
 		ADDED from AndroidManifest.xml:2:1
@@ -545,10 +545,10 @@ MERGED from com.google.android.gms:play-services-maps:7.5.0:24:5
 MERGED from com.google.android.gms:play-services-maps:7.5.0:24:5
 MERGED from com.google.android.gms:play-services-maps:7.5.0:24:5
 MERGED from com.google.android.gms:play-services-maps:7.5.0:24:5
-	android:required
-		ADDED from com.google.android.gms:play-services-maps:7.5.0:26:8
 	android:glEsVersion
 		ADDED from com.google.android.gms:play-services-maps:7.5.0:25:8
+	android:required
+		ADDED from com.google.android.gms:play-services-maps:7.5.0:26:8
 android:uses-permission#android.permission.READ_EXTERNAL_STORAGE
 IMPLIED from AndroidManifest.xml:2:1 reason: com.google.android.gms.maps requested WRITE_EXTERNAL_STORAGE
 uses-permission#android.permission.GET_ACCOUNTS
@@ -564,10 +564,10 @@ MERGED from com.google.android.gms:play-services-wallet:7.5.0:22:5
 meta-data#com.google.android.gms.wallet.api.enabled
 ADDED from com.google.android.gms:play-services-wallet:7.5.0:25:9
 MERGED from com.google.android.gms:play-services-wallet:7.5.0:25:9
-	android:name
-		ADDED from com.google.android.gms:play-services-wallet:7.5.0:26:13
 	android:value
 		ADDED from com.google.android.gms:play-services-wallet:7.5.0:27:13
+	android:name
+		ADDED from com.google.android.gms:play-services-wallet:7.5.0:26:13
 receiver#com.google.android.gms.wallet.EnableWalletOptimizationReceiver
 ADDED from com.google.android.gms:play-services-wallet:7.5.0:28:9
 MERGED from com.google.android.gms:play-services-wallet:7.5.0:28:9

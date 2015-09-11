@@ -19,19 +19,49 @@ allprojects {
 }
 
 
+task startJokeBackendServer(group: "other") {
 
-task testWithJokeBackendServer(group: "verification") {
+    dependsOn =[":jokebackend:appengineRun"]
 
-    dependsOn =[":jokebackend:appengineRun", ":app:connectedAndroidTest"]
+    project(":jokebackend").afterEvaluate { backend ->
+        backend.extensions.appengine.daemon = true
+    }
 
-    //project(":jokebackend").afterEvaluate { backend ->
-    //    backend.extensions.appengine.daemon = true
-    //}
+    doLast{
+        println("Joke Backend Server Running......")
+    }
+}
 
-    doLast {
+task stopJokeBackendServer(group: "other") {
 
+    dependsOn =[":jokebackend:appengineStop"]
+
+    doLast{
+        println("Joke Backend Server Stopped.")
     }
 
 }
 
-testWithJokeBackendServer.finalizedBy ":jokebackend:appengineStop"
+task runningAllJokeTest(group: "verification") {
+            dependsOn =[":app:connectedAndroidTest"]
+
+    mustRunAfter("startJokeBackendServer")
+
+
+    doLast{
+        println("All Joke Test runned.")
+    }
+        }
+
+task testWithJokeBackendServer(group: "verification") {
+
+    dependsOn =["startJokeBackendServer", "runningAllJokeTest"]
+
+    doLast
+            {
+
+            }
+
+}
+
+testWithJokeBackendServer.finalizedBy "stopJokeBackendServer"

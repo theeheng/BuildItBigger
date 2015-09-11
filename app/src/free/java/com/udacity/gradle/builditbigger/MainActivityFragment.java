@@ -65,7 +65,7 @@ public class MainActivityFragment extends Fragment {
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
-                requestNewInterstitial();
+
                 jokeUtility.TellJokeButtonClick(getActivity(), tellJokeButton, progressBarHolder);
             }
         });
@@ -92,6 +92,14 @@ public class MainActivityFragment extends Fragment {
         } else {
             jokeUtility.TellJokeButtonClick(getActivity(), v, progressBarHolder);
         }
+    }
+
+    @Override
+    public void onResume()
+    {
+        requestNewInterstitial();
+
+        super.onResume();
     }
 
 }
